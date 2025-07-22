@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portal Persenjataan Militer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'),
+                        url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'),
+                        url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        
+        .content-area {
+            min-height: calc(85vh);
+        }
+        
+        .menu-item {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .form-input {
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 131, 246, 0.904);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .weapon-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #374151, #cc02ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f3f6f3;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-blue-50">
+<!-- Background Music -->
+<audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+<!-- Header (10%) -->
+<header class="header-bg h-[10vh] flex items-center justify-between px-8 text-white">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 bg-white rounded-lg p-1 shadow-lg">
+<img alt="Logo" class="w-full h-full object-contain" src="https://iili.io/Fwpe9Z7.png"/>
+</div>
+<div>
+<h1 class="text-2xl font-bold">Portal Persenjataan Militer</h1>
+<p class="text-sm opacity-90">Informasi Teknologi Pertahanan</p>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm" onclick="toggleMusic()">
+                🎵 Musik
+            </button>
+<div class="text-right">
+<p class="text-sm">Universitas Msndiri</p>
+<p class="text-xs opacity-75">Azhar Maulana S | 2306700058  </p>
+</div>
+</div>
+</header>
+<!-- Menu Links (5%) -->
+<nav class="bg-gray-800 h-[5vh] flex items-center px-8 overflow-x-auto">
+<div class="flex space-x-1 min-w-max">
+<button class="menu-item px-4 py-2 text-white text-sm rounded hover:bg-blue-600 transition-colors bg-blue-600" onclick="showSection('beranda')">
+                🏠 Beranda
+            </button>
+<button class="menu-item px-4 py-2 text-white text-sm rounded hover:bg-blue-600 transition-colors" onclick="showSection('biodata')">
+                👤 Biodata
+            </button>
+<button class="menu-item px-4 py-2 text-white text-sm rounded hover:bg-blue-600 transition-colors" onclick="showSection('sejarah')">
+                📚 Sejarah
+            </button>
+<button class="menu-item px-4 py-2 text-white text-sm rounded hover:bg-blue-600 transition-colors" onclick="showSection('input')">
+                ➕ Input Data
+            </button>
+<button class="menu-item px-4 py-2 text-white text-sm rounded hover:bg-blue-600 transition-colors" onclick="showSection('view')">
+                📊 Lihat Data
+            </button>
+<button class="menu-item px-4 py-2 text-white text-sm rounded hover:bg-blue-600 transition-colors" onclick="showSection('analytics')">
+                📈 Analytics
+            </button>
+</div>
+</nav>
+<!-- Content Area (85%) -->
+<main class="content-area p-8" style="background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1920&amp;q=80'), url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1920&amp;q=80'); background-size: cover; background-position: center; background-attachment: fixed;">
+<!-- Beranda Section -->
+<div class="section" id="beranda">
+<div class="max-w-6xl mx-auto">
+<div class="hero-section">
+<div class="max-w-4xl mx-auto">
+<h1 class="text-4xl font-bold mb-6">أهلاً وسهلاً في الويب</h1>
+<h1 class="text-4xl font-bold mb-6">Tugas Mata Kuliah Pengantar Pemrograman Web</h1>
+<p class="text-xl mb-4 opacity-90">
+                            Dosen Pengampu: Aa Zezen Zaenal Abidin, S.Pd, S.T, M.Cs
+                        </p>
+<p class="text-lg mb-8 opacity-80">
+                            Universitas Mandiri - Portal Sistem Informasi Persenjataan Militer
+
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Biodata Section -->
+<div class="section hidden" id="biodata">
+<div class="max-w-4xl mx-auto">
+<div class="bg-white rounded-xl shadow-lg p-8 card">
+<h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+<span class="weapon-icon mr-4">👤</span>
+                        Biodata Pembuat
+                    </h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="md:col-span-1">
+<div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-8 text-white text-center">
+<div class="w-32 h-32 bg-white rounded-full mx-auto mb-4 overflow-hidden border-4 border-white shadow-lg">
+<img alt="Azhar Maulana" class="w-full h-full object-cover" src="https://iili.io/FwpwZVn.md.jpg"/>
+</div>
+<h3 class="text-xl font-bold">Azhar Maulana</h3>
+<p class="text-blue-100">Mahasiswa Teknik Informatika</p>
+</div>
+</div>
+<div class="md:col-span-2">
+<div class="space-y-4">
+<div class="border-l-4 border-blue-500 pl-4">
+<h4 class="font-semibold text-gray-800">Nama Lengkap</h4>
+<p class="text-gray-600">Azhar Maulana Sucipto</p>
+</div>
+<div class="border-l-4 border-green-500 pl-4">
+<h4 class="font-semibold text-gray-800">Tempat, Tanggal Lahir</h4>
+<p class="text-gray-600">Garut, 26 November 2004</p>
+</div>
+<div class="border-l-4 border-purple-500 pl-4">
+<h4 class="font-semibold text-gray-800">NPM</h4>
+<p class="text-gray-600">2306700058</p>
+</div>
+<div class="border-l-4 border-red-500 pl-4">
+<h4 class="font-semibold text-gray-800">Program Studi</h4>
+<p class="text-gray-600">Teknik Informatika</p>
+</div>
+<div class="border-l-4 border-orange-500 pl-4">
+<h4 class="font-semibold text-gray-800">Kontak</h4>
+<p class="text-gray-600">zr.azharmaulana@gmail.com</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sejarah Section -->
+<div class="section hidden" id="sejarah">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-bold text-white mb-8 flex items-center">                       
+<span class="weapon-icon mr-4">📚</span>
+                    Sejarah Persenjataan Militer
+                </h2>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-white rounded-xl shadow-lg p-6 card">
+<div class="bg-red-100 rounded-lg p-4 mb-4">
+<div class="text-4xl mb-2">🚁</div>
+<h3 class="text-xl font-bold text-gray-800">Era Helikopter Tempur</h3>
+</div>
+<p class="text-gray-600 leading-relaxed mb-4">
+                            Helikopter tempur mulai dikembangkan pada era Perang Vietnam (1955–1975). 
+                            Teknologi ini merevolusi taktik pertempuran dengan memberikan mobilitas tinggi 
+                            dan kemampuan serangan presisi dari udara. Dalam medan perang yang sulit dijangkau
+                             kendaraan darat, helikopter tempur memungkinkan pasukan untuk melakukan manuver cepat,
+                              evakuasi medis, pengintaian, serta serangan langsung ke posisi musuh. Salah satu
+                               contoh penting adalah Bell AH-1 Cobra, yang menjadi helikopter serbu pertama dengan
+                                desain ramping dan persenjataan lengkap. Sejak saat itu, penggunaan helikopter dalam
+                                 operasi militer modern terus berkembang, menjadi tulang punggung dukungan udara di 
+                                 berbagai konflik di seluruh dunia.
+                        </p>
+<div class="bg-gray-50 p-3 rounded-lg">
+<p class="text-sm text-gray-500">📸 Dokumentasi: Bell AH-1 Cobra - Helikopter tempur pertama</p>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg p-6 card">
+<div class="bg-blue-100 rounded-lg p-4 mb-4">
+<div class="text-4xl mb-2">🚢</div>
+<h3 class="text-xl font-bold text-gray-800">Kapal Perang Modern</h3>
+</div>
+<p class="text-gray-600 leading-relaxed mb-4">
+                            Perkembangan kapal perang modern dimulai dari era dreadnought 
+                            pada awal abad ke-20, yang saat itu merevolusi kekuatan laut dengan
+                             meriam berat dan lapisan baja tebal. Kapal jenis ini menjadi simbol
+                              supremasi angkatan laut di zamannya. Seiring kemajuan teknologi, 
+                              desain kapal perang mengalami transformasi signifikan menuju kapal 
+                              destroyer dan fregat masa kini. Kapal-kapal modern ini tidak hanya 
+                              memiliki kecepatan dan manuver yang lebih baik, tetapi juga dilengkapi 
+                              dengan sistem radar canggih, sonar bawah laut, dan perangkat elektronik 
+                              untuk mendeteksi serta mengantisipasi ancaman dari berbagai arah. Selain itu,
+                               integrasi rudal jarak jauh dengan sistem kendali tembak otomatis memungkinkan
+                                kapal-kapal ini menjalankan operasi tempur dengan akurasi tinggi, baik untuk 
+                                pertahanan wilayah laut maupun misi ofensif lintas samudra.
+                        </p>
+<div class="bg-gray-50 p-3 rounded-lg">
+<p class="text-sm text-gray-500">📸 Dokumentasi: USS Zumwalt - Destroyer teknologi stealth</p>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg p-6 card">
+<div class="bg-green-100 rounded-lg p-4 mb-4">
+<div class="text-4xl mb-2">🛡️</div>
+<h3 class="text-xl font-bold text-gray-800">Sistem Pertahanan Udara</h3>
+</div>
+<p class="text-gray-600 leading-relaxed mb-4">
+                            Sistem pertahanan udara berkembang dari penggunaan meriam anti-pesawat konvensional 
+                            menjadi sistem rudal canggih yang mampu memberikan perlindungan luas dan presisi 
+                            tinggi. Pada masa awal, pertahanan udara hanya mengandalkan tembakan manual untuk 
+                            menjatuhkan pesawat musuh di jarak dekat. Namun, seiring dengan kemajuan teknologi 
+                            militer, muncul sistem pertahanan modern seperti MIM-104 Patriot dan S-400 Triumf. 
+                            Kedua sistem ini dilengkapi dengan radar multifungsi yang dapat mendeteksi, melacak, 
+                            dan mengunci target dari jarak ratusan kilometer, baik itu pesawat tempur, rudal 
+                            balistik, maupun drone berkecepatan tinggi. Kecepatan reaksi yang cepat, jangkauan 
+                            luas, dan kemampuan intersepsi lintas ketinggian menjadikan sistem ini bagian krusial 
+                            dalam strategi pertahanan nasional banyak negara.
+                        </p>
+<div class="bg-gray-50 p-3 rounded-lg">
+<p class="text-sm text-gray-500">📸 Dokumentasi: Sistem Patriot PAC-3 dalam operasi</p>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg p-6 card">
+<div class="bg-purple-100 rounded-lg p-4 mb-4">
+<div class="text-4xl mb-2">🎯</div>
+<h3 class="text-xl font-bold text-gray-800">Teknologi Presisi</h3>
+</div>
+<p class="text-gray-600 leading-relaxed mb-4">
+                            Era modern ditandai dengan penggunaan teknologi GPS, laser guidance, dan kecerdasan
+                             buatan (AI) untuk menciptakan sistem persenjataan presisi tinggi. Teknologi ini memungkinkan
+                              senjata untuk mengenai target dengan akurasi luar biasa, bahkan dalam kondisi cuaca buruk
+                               atau medan kompleks. GPS digunakan untuk navigasi lintas benua dengan kesalahan hanya dalam 
+                               hitungan meter, sementara sistem pemandu laser memberikan kendali langsung terhadap jalur
+                                tembak hingga detik terakhir. Selain itu, AI turut diintegrasikan untuk menganalisis data
+                                 secara real-time, mengidentifikasi target prioritas, dan menyesuaikan strategi serangan 
+                                 secara otomatis. Semua ini bertujuan untuk meminimalkan collateral damage atau kerusakan
+                                  yang tidak disengaja, sekaligus meningkatkan efektivitas operasi militer secara signifikan
+                                   dengan efisiensi sumber daya dan waktu yang lebih baik.
+
+                        </p>
+<div class="bg-gray-50 p-3 rounded-lg">
+<p class="text-sm text-gray-500">📸 Dokumentasi: Rudal Hellfire dengan sistem panduan laser</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Data Section -->
+<div class="section hidden" id="input">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-3xl font-bold text-white mb-8 flex items-center">                      
+<span class="weapon-icon mr-4">➕</span>
+                    Input Data Senjata
+                </h2>
+<div class="bg-white rounded-xl shadow-lg p-8 card">
+<div class="mb-6">
+<div class="flex space-x-4 border-b">
+<button class="px-4 py-2 font-medium text-blue-600 border-b-2 border-blue-600" id="tab-senjata" onclick="showInputForm('senjata')">
+                                Data Senjata
+                            </button>
+<button class="px-4 py-2 font-medium text-gray-500 hover:text-blue-600" id="tab-spesifikasi" onclick="showInputForm('spesifikasi')">
+                                Spesifikasi
+                            </button>
+<button class="px-4 py-2 font-medium text-gray-500 hover:text-blue-600" id="tab-operasional" onclick="showInputForm('operasional')">
+                                Data Operasional
+                            </button>
+</div>
+</div>
+<!-- Form Senjata -->
+<div class="input-form" id="form-senjata">
+<form class="space-y-4" onsubmit="addSenjata(event)">
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Nama Senjata</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="nama_senjata" required="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Jenis</label>
+<select class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="jenis" required="">
+<option value="">Pilih Jenis</option>
+<option value="Senapan Serbu">Senapan Serbu</option>
+<option value="Pistol">Pistol</option>
+<option value="Sniper">Sniper</option>
+<option value="Rudal">Rudal</option>
+<option value="Tank">Tank</option>
+<option value="Helikopter">Helikopter</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Negara Asal</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="negara_asal" required="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Tahun Produksi</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="tahun_produksi" required="" type="number"/>
+</div>
+</div>
+<div>
+<label class="flex items-center">
+<input class="mr-2" name="status_aktif" type="checkbox"/>
+<span class="text-sm text-gray-700">Status Aktif</span>
+</label>
+</div>
+<button class="btn-primary w-full py-3 text-white rounded-lg font-medium" type="submit">
+                                Tambah Data Senjata
+                            </button>
+</form>
+</div>
+<!-- Form Spesifikasi -->
+<div class="input-form hidden" id="form-spesifikasi">
+<form class="space-y-4" onsubmit="addSpesifikasi(event)">
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Pilih Senjata</label>
+<select class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" id="senjata-select" name="id_senjata" required="">
+<option value="">Pilih Senjata</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Kaliber</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="kaliber" required="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Jangkauan Max (meter)</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="jangkauan_max" required="" type="number"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Berat (kg)</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="berat" required="" step="0.01" type="number"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Rating Akurasi (1-10)</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" max="10" min="1" name="akurasi_rating" required="" type="number"/>
+</div>
+</div>
+<button class="btn-primary w-full py-3 text-white rounded-lg font-medium" type="submit">
+                                Tambah Spesifikasi
+                            </button>
+</form>
+</div>
+<!-- Form Operasional -->
+<div class="input-form hidden" id="form-operasional">
+<form class="space-y-4" onsubmit="addOperasional(event)">
+<div class="grid md:grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Pilih Senjata</label>
+<select class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" id="senjata-select-ops" name="id_senjata" required="">
+<option value="">Pilih Senjata</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Unit Pengguna</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="unit_pengguna" required="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Jumlah Unit</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="jumlah_unit" required="" type="number"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Status Operasi</label>
+<select class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="status_operasi" required="">
+<option value="">Pilih Status</option>
+<option value="Aktif">Aktif</option>
+<option value="Standby">Standby</option>
+<option value="Maintenance">Maintenance</option>
+<option value="Retired">Retired</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Deploy</label>
+<input class="form-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none" name="tanggal_deploy" required="" type="date"/>
+</div>
+</div>
+<button class="btn-primary w-full py-3 text-white rounded-lg font-medium" type="submit">
+                                Tambah Data Operasional
+                            </button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- View Data Section -->
+<div class="section hidden" id="view">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-3xl font-bold text-white mb-8 flex items-center">                      
+<span class="weapon-icon mr-4">📊</span>
+                    Lihat &amp; Kelola Data
+                </h2>
+<div class="mb-6">
+<div class="flex space-x-4 border-b">
+<button class="px-4 py-2 font-medium text-blue-600 border-b-2 border-blue-600" id="data-tab-senjata" onclick="showDataTable('senjata')">
+                            Data Senjata
+                        </button>
+<button class="px-4 py-2 font-medium text-gray-500 hover:text-blue-600" id="data-tab-spesifikasi" onclick="showDataTable('spesifikasi')">
+                            Spesifikasi
+                        </button>
+<button class="px-4 py-2 font-medium text-gray-500 hover:text-blue-600" id="data-tab-operasional" onclick="showDataTable('operasional')">
+                            Data Operasional
+                        </button>
+<button class="px-4 py-2 font-medium text-gray-500 hover:text-blue-600" id="data-tab-view" onclick="showDataTable('view')">
+                            View Efektivitas
+                        </button>
+</div>
+</div>
+<!-- Tabel Senjata -->
+<div class="data-table bg-white rounded-xl shadow-lg" id="table-senjata">
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-4">Data Senjata</h3>
+<div class="table-container">
+<table class="w-full text-sm">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-4 py-3 text-left font-medium text-gray-700">ID</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Nama Senjata</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Jenis</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Negara Asal</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Tahun</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Status</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200" id="senjata-tbody">
+<!-- Data akan diisi oleh JavaScript -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Tabel Spesifikasi -->
+<div class="data-table bg-white rounded-xl shadow-lg hidden" id="table-spesifikasi">
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-4">Data Spesifikasi</h3>
+<div class="table-container">
+<table class="w-full text-sm">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-4 py-3 text-left font-medium text-gray-700">ID</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Nama Senjata</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Kaliber</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Jangkauan (m)</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Berat (kg)</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Akurasi</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200" id="spesifikasi-tbody">
+<!-- Data akan diisi oleh JavaScript -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Tabel Operasional -->
+<div class="data-table bg-white rounded-xl shadow-lg hidden" id="table-operasional">
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-4">Data Operasional</h3>
+<div class="table-container">
+<table class="w-full text-sm">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-4 py-3 text-left font-medium text-gray-700">ID</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Nama Senjata</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Unit Pengguna</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Jumlah Unit</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Status</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Tanggal Deploy</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200" id="operasional-tbody">
+<!-- Data akan diisi oleh JavaScript -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- View Efektivitas -->
+<div class="data-table bg-white rounded-xl shadow-lg hidden" id="table-view">
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-800 mb-4">View Analisis Efektivitas</h3>
+<div class="table-container">
+<table class="w-full text-sm">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Nama Senjata</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Jenis</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Jangkauan</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Akurasi</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Jumlah Unit</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Status Operasi</th>
+<th class="px-4 py-3 text-left font-medium text-gray-700">Tingkat Efektivitas</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200" id="view-tbody">
+<!-- Data akan diisi oleh JavaScript -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Analytics Section -->
+<div class="section hidden" id="analytics">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-bold text-white mb-8 flex items-center">                      
+<span class="weapon-icon mr-4">📈</span>
+                    Analytics &amp; RapidMiner Insights
+                </h2>
+<div class="grid md:grid-cols-2 gap-8 mb-8">
+<div class="bg-white rounded-xl shadow-lg p-6 card">
+<h3 class="text-xl font-bold text-blue-600 mb-4">Distribusi Jenis Senjata</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-gray-700">Senapan Serbu</span>
+<div class="flex items-center">
+<div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+<div class="bg-blue-600 h-2 rounded-full" style="width: 35%"></div>
+</div>
+<span class="text-sm text-gray-500">35%</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-700">Rudal</span>
+<div class="flex items-center">
+<div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+<div class="bg-green-600 h-2 rounded-full" style="width: 25%"></div>
+</div>
+<span class="text-sm text-gray-500">25%</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-700">Tank</span>
+<div class="flex items-center">
+<div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+<div class="bg-purple-600 h-2 rounded-full" style="width: 20%"></div>
+</div>
+<span class="text-sm text-gray-500">20%</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-gray-700">Lainnya</span>
+<div class="flex items-center">
+<div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+<div class="bg-orange-600 h-2 rounded-full" style="width: 20%"></div>
+</div>
+<span class="text-sm text-gray-500">20%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg p-6 card">
+<h3 class="text-xl font-bold text-green-600 mb-4">Tingkat Efektivitas</h3>
+<div class="space-y-4">
+<div class="bg-green-50 p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="font-medium text-green-800">Sangat Efektif</span>
+<span class="text-2xl font-bold text-green-600">12</span>
+</div>
+<p class="text-sm text-green-600">Senjata dengan rating akurasi ≥8 dan unit &gt;50</p>
+</div>
+<div class="bg-blue-50 p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="font-medium text-blue-800">Efektif</span>
+<span class="text-2xl font-bold text-blue-600">8</span>
+</div>
+<p class="text-sm text-blue-600">Senjata dengan rating akurasi ≥6 dan unit &gt;20</p>
+</div>
+<div class="bg-orange-50 p-4 rounded-lg">
+<div class="flex items-center justify-between mb-2">
+<span class="font-medium text-orange-800">Perlu Evaluasi</span>
+<span class="text-2xl font-bold text-orange-600">5</span>
+</div>
+<p class="text-sm text-orange-600">Senjata yang memerlukan peninjauan lebih lanjut</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-lg p-6 card">
+<h3 class="text-xl font-bold text-purple-600 mb-4">RapidMiner Decision Rules</h3>
+<div class="bg-gray-50 p-4 rounded-lg mb-4">
+<h4 class="font-semibold text-gray-800 mb-2">Aturan Klasifikasi Efektivitas:</h4>
+<ul class="space-y-2 text-sm text-gray-700">
+<li class="flex items-start">
+<span class="text-green-600 mr-2">•</span>
+<strong>IF</strong> akurasi_rating ≥ 8 <strong>AND</strong> jumlah_unit &gt; 50 <strong>THEN</strong> "Sangat Efektif"
+                            </li>
+<li class="flex items-start">
+<span class="text-blue-600 mr-2">•</span>
+<strong>IF</strong> akurasi_rating ≥ 6 <strong>AND</strong> jumlah_unit &gt; 20 <strong>THEN</strong> "Efektif"
+                            </li>
+<li class="flex items-start">
+<span class="text-orange-600 mr-2">•</span>
+<strong>IF</strong> jangkauan_max &gt; 1000 <strong>AND</strong> status_operasi = "Aktif" <strong>THEN</strong> "Prioritas Tinggi"
+                            </li>
+<li class="flex items-start">
+<span class="text-red-600 mr-2">•</span>
+<strong>ELSE</strong> "Perlu Evaluasi"
+                            </li>
+</ul>
+</div>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="bg-blue-50 p-4 rounded-lg text-center">
+<div class="text-2xl font-bold text-blue-600">92%</div>
+<div class="text-sm text-blue-800">Akurasi Model</div>
+</div>
+<div class="bg-green-50 p-4 rounded-lg text-center">
+<div class="text-2xl font-bold text-green-600">87%</div>
+<div class="text-sm text-green-800">Precision</div>
+</div>
+<div class="bg-purple-50 p-4 rounded-lg text-center">
+<div class="text-2xl font-bold text-purple-600">89%</div>
+<div class="text-sm text-purple-800">Recall</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Data Storage
+        let senjataData = [
+            {id: 1, nama_senjata: "AK-47", jenis: "Senapan Serbu", negara_asal: "Rusia", tahun_produksi: 1947, status_aktif: true},
+            {id: 2, nama_senjata: "M16A4", jenis: "Senapan Serbu", negara_asal: "Amerika Serikat", tahun_produksi: 1964, status_aktif: true},
+            {id: 3, nama_senjata: "Javelin", jenis: "Rudal", negara_asal: "Amerika Serikat", tahun_produksi: 1996, status_aktif: true}
+        ];
+        
+        let spesifikasiData = [
+            {id: 1, id_senjata: 1, kaliber: "7.62mm", jangkauan_max: 400, berat: 4.3, akurasi_rating: 7},
+            {id: 2, id_senjata: 2, kaliber: "5.56mm", jangkauan_max: 550, berat: 3.99, akurasi_rating: 8},
+            {id: 3, id_senjata: 3, kaliber: "127mm", jangkauan_max: 4750, berat: 22.3, akurasi_rating: 9}
+        ];
+        
+        let operasionalData = [
+            {id: 1, id_senjata: 1, unit_pengguna: "Batalyon Infanteri 1", jumlah_unit: 120, status_operasi: "Aktif", tanggal_deploy: "2023-01-15"},
+            {id: 2, id_senjata: 2, unit_pengguna: "Marinir Divisi 2", jumlah_unit: 80, status_operasi: "Aktif", tanggal_deploy: "2023-03-20"},
+            {id: 3, id_senjata: 3, unit_pengguna: "Satuan Anti-Tank", jumlah_unit: 25, status_operasi: "Standby", tanggal_deploy: "2023-06-10"}
+        ];
+
+        // Navigation Functions
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+            
+            // Update menu active state
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('bg-blue-600');
+            });
+            event.target.classList.add('bg-blue-600');
+            
+            // Load data if needed
+            if (sectionId === 'input') {
+                updateSenjataSelects();
+            } else if (sectionId === 'view') {
+                showDataTable('senjata');
+            }
+        }
+
+        // Music Control
+        
+        function toggleMusic() {
+        const music = document.getElementById('bgMusic');
+        const btn = document.querySelector('button[onclick="toggleMusic()"]');
+
+        if (music.paused) {
+            music.play().then(() => {
+                if (btn) btn.textContent = '🔇 Musik';
+            }).catch(e => {
+                console.error('Autoplay diblokir:', e);
+                alert('Klik tombol lagi kalau musik belum menyala.');
+            });
+        } else {
+            music.pause();
+            if (btn) btn.textContent = '🎵 Musik';
+        }
+    }
+
+        // Input Form Functions
+        function showInputForm(formType) {
+            // Hide all forms
+            document.querySelectorAll('.input-form').forEach(form => {
+                form.classList.add('hidden');
+            });
+            
+            // Show selected form
+            document.getElementById(`form-${formType}`).classList.remove('hidden');
+            
+            // Update tab active state
+            document.querySelectorAll('[id^="tab-"]').forEach(tab => {
+                tab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                tab.classList.add('text-gray-500');
+            });
+            document.getElementById(`tab-${formType}`).classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+            document.getElementById(`tab-${formType}`).classList.remove('text-gray-500');
+            
+            if (formType !== 'senjata') {
+                updateSenjataSelects();
+            }
+        }
+
+        function updateSenjataSelects() {
+            const selects = ['senjata-select', 'senjata-select-ops'];
+            selects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                if (select) {
+                    select.innerHTML = '<option value="">Pilih Senjata</option>';
+                    senjataData.forEach(senjata => {
+                        select.innerHTML += `<option value="${senjata.id}">${senjata.nama_senjata}</option>`;
+                    });
+                }
+            });
+        }
+
+        // CRUD Functions
+        function addSenjata(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const newId = Math.max(...senjataData.map(s => s.id)) + 1;
+            
+            const newSenjata = {
+                id: newId,
+                nama_senjata: formData.get('nama_senjata'),
+                jenis: formData.get('jenis'),
+                negara_asal: formData.get('negara_asal'),
+                tahun_produksi: parseInt(formData.get('tahun_produksi')),
+                status_aktif: formData.get('status_aktif') === 'on'
+            };
+            
+            senjataData.push(newSenjata);
+            event.target.reset();
+            alert('Data senjata berhasil ditambahkan!');
+            updateSenjataSelects();
+        }
+
+        function addSpesifikasi(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const newId = Math.max(...spesifikasiData.map(s => s.id)) + 1;
+            
+            const newSpesifikasi = {
+                id: newId,
+                id_senjata: parseInt(formData.get('id_senjata')),
+                kaliber: formData.get('kaliber'),
+                jangkauan_max: parseInt(formData.get('jangkauan_max')),
+                berat: parseFloat(formData.get('berat')),
+                akurasi_rating: parseInt(formData.get('akurasi_rating'))
+            };
+            
+            spesifikasiData.push(newSpesifikasi);
+            event.target.reset();
+            alert('Data spesifikasi berhasil ditambahkan!');
+        }
+
+        function addOperasional(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const newId = Math.max(...operasionalData.map(o => o.id)) + 1;
+            
+            const newOperasional = {
+                id: newId,
+                id_senjata: parseInt(formData.get('id_senjata')),
+                unit_pengguna: formData.get('unit_pengguna'),
+                jumlah_unit: parseInt(formData.get('jumlah_unit')),
+                status_operasi: formData.get('status_operasi'),
+                tanggal_deploy: formData.get('tanggal_deploy')
+            };
+            
+            operasionalData.push(newOperasional);
+            event.target.reset();
+            alert('Data operasional berhasil ditambahkan!');
+        }
+
+        // Data Display Functions
+        function showDataTable(tableType) {
+            // Hide all tables
+            document.querySelectorAll('.data-table').forEach(table => {
+                table.classList.add('hidden');
+            });
+            
+            // Show selected table
+            document.getElementById(`table-${tableType}`).classList.remove('hidden');
+            
+            // Update tab active state
+            document.querySelectorAll('[id^="data-tab-"]').forEach(tab => {
+                tab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                tab.classList.add('text-gray-500');
+            });
+            document.getElementById(`data-tab-${tableType}`).classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+            document.getElementById(`data-tab-${tableType}`).classList.remove('text-gray-500');
+            
+            // Load data
+            switch(tableType) {
+                case 'senjata':
+                    loadSenjataTable();
+                    break;
+                case 'spesifikasi':
+                    loadSpesifikasiTable();
+                    break;
+                case 'operasional':
+                    loadOperasionalTable();
+                    break;
+                case 'view':
+                    loadViewTable();
+                    break;
+            }
+        }
+
+        function loadSenjataTable() {
+            const tbody = document.getElementById('senjata-tbody');
+            tbody.innerHTML = '';
+            
+            senjataData.forEach(senjata => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3">${senjata.id}</td>
+                        <td class="px-4 py-3 font-medium">${senjata.nama_senjata}</td>
+                        <td class="px-4 py-3">${senjata.jenis}</td>
+                        <td class="px-4 py-3">${senjata.negara_asal}</td>
+                        <td class="px-4 py-3">${senjata.tahun_produksi}</td>
+                        <td class="px-4 py-3">
+                            <span class="px-2 py-1 text-xs rounded-full ${senjata.status_aktif ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${senjata.status_aktif ? 'Aktif' : 'Tidak Aktif'}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3">
+                            <button onclick="editSenjata(${senjata.id})" class="text-blue-600 hover:text-blue-800 mr-2">Edit</button>
+                            <button onclick="deleteSenjata(${senjata.id})" class="text-red-600 hover:text-red-800">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function loadSpesifikasiTable() {
+            const tbody = document.getElementById('spesifikasi-tbody');
+            tbody.innerHTML = '';
+            
+            spesifikasiData.forEach(spec => {
+                const senjata = senjataData.find(s => s.id === spec.id_senjata);
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3">${spec.id}</td>
+                        <td class="px-4 py-3 font-medium">${senjata ? senjata.nama_senjata : 'N/A'}</td>
+                        <td class="px-4 py-3">${spec.kaliber}</td>
+                        <td class="px-4 py-3">${spec.jangkauan_max.toLocaleString()}</td>
+                        <td class="px-4 py-3">${spec.berat}</td>
+                        <td class="px-4 py-3">
+                            <div class="flex items-center">
+                                <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: ${spec.akurasi_rating * 10}%"></div>
+                                </div>
+                                <span class="text-sm">${spec.akurasi_rating}/10</span>
+                            </div>
+                        </td>
+                        <td class="px-4 py-3">
+                            <button onclick="editSpesifikasi(${spec.id})" class="text-blue-600 hover:text-blue-800 mr-2">Edit</button>
+                            <button onclick="deleteSpesifikasi(${spec.id})" class="text-red-600 hover:text-red-800">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function loadOperasionalTable() {
+            const tbody = document.getElementById('operasional-tbody');
+            tbody.innerHTML = '';
+            
+            operasionalData.forEach(ops => {
+                const senjata = senjataData.find(s => s.id === ops.id_senjata);
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3">${ops.id}</td>
+                        <td class="px-4 py-3 font-medium">${senjata ? senjata.nama_senjata : 'N/A'}</td>
+                        <td class="px-4 py-3">${ops.unit_pengguna}</td>
+                        <td class="px-4 py-3">${ops.jumlah_unit}</td>
+                        <td class="px-4 py-3">
+                            <span class="px-2 py-1 text-xs rounded-full ${getStatusColor(ops.status_operasi)}">
+                                ${ops.status_operasi}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3">${ops.tanggal_deploy}</td>
+                        <td class="px-4 py-3">
+                            <button onclick="editOperasional(${ops.id})" class="text-blue-600 hover:text-blue-800 mr-2">Edit</button>
+                            <button onclick="deleteOperasional(${ops.id})" class="text-red-600 hover:text-red-800">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function loadViewTable() {
+            const tbody = document.getElementById('view-tbody');
+            tbody.innerHTML = '';
+            
+            // Generate view data by joining tables
+            const viewData = senjataData.map(senjata => {
+                const spec = spesifikasiData.find(s => s.id_senjata === senjata.id);
+                const ops = operasionalData.find(o => o.id_senjata === senjata.id);
+                
+                if (spec && ops) {
+                    let efektivitas = 'Perlu Evaluasi';
+                    if (spec.akurasi_rating >= 8 && ops.jumlah_unit > 50) {
+                        efektivitas = 'Sangat Efektif';
+                    } else if (spec.akurasi_rating >= 6 && ops.jumlah_unit > 20) {
+                        efektivitas = 'Efektif';
+                    }
+                    
+                    return {
+                        nama_senjata: senjata.nama_senjata,
+                        jenis: senjata.jenis,
+                        jangkauan_max: spec.jangkauan_max,
+                        akurasi_rating: spec.akurasi_rating,
+                        jumlah_unit: ops.jumlah_unit,
+                        status_operasi: ops.status_operasi,
+                        tingkat_efektivitas: efektivitas
+                    };
+                }
+                return null;
+            }).filter(item => item !== null);
+            
+            viewData.forEach(item => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3 font-medium">${item.nama_senjata}</td>
+                        <td class="px-4 py-3">${item.jenis}</td>
+                        <td class="px-4 py-3">${item.jangkauan_max.toLocaleString()}m</td>
+                        <td class="px-4 py-3">${item.akurasi_rating}/10</td>
+                        <td class="px-4 py-3">${item.jumlah_unit}</td>
+                        <td class="px-4 py-3">
+                            <span class="px-2 py-1 text-xs rounded-full ${getStatusColor(item.status_operasi)}">
+                                ${item.status_operasi}
+                            </span>
+                        </td>
+                        <td class="px-4 py-3">
+                            <span class="px-2 py-1 text-xs rounded-full ${getEfektivitasColor(item.tingkat_efektivitas)}">
+                                ${item.tingkat_efektivitas}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Helper Functions
+        function getStatusColor(status) {
+            switch(status) {
+                case 'Aktif': return 'bg-green-100 text-green-800';
+                case 'Standby': return 'bg-yellow-100 text-yellow-800';
+                case 'Maintenance': return 'bg-orange-100 text-orange-800';
+                case 'Retired': return 'bg-red-100 text-red-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function getEfektivitasColor(efektivitas) {
+            switch(efektivitas) {
+                case 'Sangat Efektif': return 'bg-green-100 text-green-800';
+                case 'Efektif': return 'bg-blue-100 text-blue-800';
+                case 'Perlu Evaluasi': return 'bg-orange-100 text-orange-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Edit and Delete Functions (simplified for demo)
+        function editSenjata(id) {
+            alert(`Edit senjata dengan ID: ${id} (Demo - implementasi lengkap memerlukan form edit)`);
+        }
+
+        function deleteSenjata(id) {
+            if (confirm('Yakin ingin menghapus data senjata ini?')) {
+                senjataData = senjataData.filter(s => s.id !== id);
+                loadSenjataTable();
+                updateSenjataSelects();
+                alert('Data berhasil dihapus!');
+            }
+        }
+
+        function editSpesifikasi(id) {
+            alert(`Edit spesifikasi dengan ID: ${id} (Demo - implementasi lengkap memerlukan form edit)`);
+        }
+
+        function deleteSpesifikasi(id) {
+            if (confirm('Yakin ingin menghapus data spesifikasi ini?')) {
+                spesifikasiData = spesifikasiData.filter(s => s.id !== id);
+                loadSpesifikasiTable();
+                alert('Data berhasil dihapus!');
+            }
+        }
+
+        function editOperasional(id) {
+            alert(`Edit operasional dengan ID: ${id} (Demo - implementasi lengkap memerlukan form edit)`);
+        }
+
+        function deleteOperasional(id) {
+            if (confirm('Yakin ingin menghapus data operasional ini?')) {
+                operasionalData = operasionalData.filter(o => o.id !== id);
+                loadOperasionalTable();
+                alert('Data berhasil dihapus!');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('beranda');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9628ec642579fd75',t:'MTc1MzA4MjI5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<!-- Modal Edit Senjata -->
+<div class="modal" id="editModal" style="display:none; position:fixed; z-index:999; padding-top:100px;
+left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.4);">
+<div class="modal-content" style="background-color:#fff; margin:auto; padding:20px;
+  border:1px solid #888; width:400px; border-radius:6px;">
+<span class="close" onclick="document.getElementById('editModal').style.display='none'" style="color:#aaa; float:right; font-size:24px; font-weight:bold; cursor:pointer;">×</span>
+<h3>Edit Senjata</h3>
+<form id="editForm">
+<input id="editId" type="hidden"/>
+<label>Nama:</label><br/><input id="editNama" required="" type="text"/><br/>
+<label>Jenis:</label><br/>
+<select id="editJenis">
+<option>Senapan Serbu</option>
+<option>Pistol</option>
+<option>Sniper</option>
+<option>Rudal</option>
+<option>Tank</option>
+<option>Helikopter</option>
+</select><br/>
+<label>Negara:</label><br/><input id="editNegara" required="" type="text"/><br/>
+<label>Tahun Produksi:</label><br/><input id="editTahun" required="" type="number"/><br/>
+<label>Status Aktif:</label>
+<input id="editStatus" type="checkbox"/><br/><br/>
+<button type="submit">Simpan</button>
+</form>
+</div>
+</div>
+
+<script>
+  // Ambil data dari API
+  fetch('api/senjata.php')
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.getElementById('data-senjata');
+      if (!tbody) return;
+      data.data.forEach(senjata => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${senjata.id}</td>
+          <td>${senjata.nama_senjata}</td>
+          <td>${senjata.jenis}</td>
+          <td>${senjata.negara_asal}</td>
+          <td>${senjata.tahun_produksi}</td>
+          <td>${senjata.status_aktif ? 'Aktif' : 'Tidak Aktif'}</td>
+          <td><button onclick='editData(${JSON.stringify(senjata)})'>Edit</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    });
+
+  function editData(data) {
+    document.getElementById('editId').value = data.id;
+    document.getElementById('editNama').value = data.nama_senjata;
+    document.getElementById('editJenis').value = data.jenis;
+    document.getElementById('editNegara').value = data.negara_asal;
+    document.getElementById('editTahun').value = data.tahun_produksi;
+    document.getElementById('editStatus').checked = data.status_aktif == 1;
+    document.getElementById('editModal').style.display = 'block';
+  }
+
+  document.getElementById('editForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const payload = {
+      id: document.getElementById('editId').value,
+      nama_senjata: document.getElementById('editNama').value,
+      jenis: document.getElementById('editJenis').value,
+      negara_asal: document.getElementById('editNegara').value,
+      tahun_produksi: document.getElementById('editTahun').value,
+      status_aktif: document.getElementById('editStatus').checked
+    };
+
+    fetch('api/senjata.php', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(result => {
+      alert(result.message);
+      if(result.success) location.reload();
+    });
+  });
+</script>
+</body>
+</html>
